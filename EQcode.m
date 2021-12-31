@@ -6,10 +6,10 @@ yl=1;
 yh=2;
 N=5;
 gammad=0.06;
-gammae=0.02;
+gammae=0;
 alpha=0.66;
 A=1.45;
-Re=1.02;
+Re=1.15;
 Rc=0.98;
 Rr=1.02;
 Ksi=0.06;
@@ -43,26 +43,21 @@ Dactstore=createDact(Rd,Re,yd,beta,gammad,gammae,yh,yl,Rc)';
 
 figure
 plot(Rd,yd)
-gammaei=[0:0.01:gammad];
-for gammae=0.01:0.01:gammad
+gammaei=[0:0.005:gammad];
+for gammae=0.005:0.005:gammad
 yde=1./(Rd-Re).*(log(Rd)/beta-log(Re)/beta+gammad-gammae);
 yd=max(yde,ydc);
 Dact=createDact(Rd,Re,yd,beta,gammad,gammae,yh,yl,Rc)';
 Dactstore=[Dactstore, Dact];
 end
 
-Ndstari=[0:0.01:gammad];
-Rdstari=[0:0.01:gammad];
-ydstarei=[0:0.01:gammad];
-ydstarci=[0:0.01:gammad];
-yestari=[0:0.01:gammad];
+Ndstari=[0:0.005:gammad];
+Rdstari=[0:0.005:gammad];
+ydstarei=[0:0.005:gammad];
+ydstarci=[0:0.005:gammad];
+yestari=[0:0.005:gammad];
 
 
-%Ks=(1-Ksi).*Dact;
-%Kd=(1/(alpha*(1-Ksi)).*Rd-1/(alpha*(1-Ksi)).*Ksi*Rr).^(1/(alpha-1));
-%figure
-%plot(Rd,Ks,Rd,Kd)
-%legend('Loan Supply','Loan Demand')
 
 save RdDactfile.mat
 
